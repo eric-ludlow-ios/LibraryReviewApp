@@ -80,6 +80,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="UMY-KE-oS9" id="nsb-d2-Wcj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <customObject id="py5-p7-zEL" customClass="BooksListTableViewDataSource"/>
@@ -206,7 +209,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="authorField" destination="oFA-Vq-ZXD" id="kQZ-xr-c3L"/>
+                        <outlet property="hasReadSwitch" destination="WIm-cF-b3o" id="bzr-hE-ZdD"/>
                         <outlet property="myReviewTextView" destination="RcK-My-gzP" id="G6b-W2-Qll"/>
+                        <outlet property="ratingSegCon" destination="d3Q-BD-Vda" id="jPZ-ho-Zpf"/>
+                        <outlet property="reviewTextView" destination="RcK-My-gzP" id="tEW-lx-mEl"/>
+                        <outlet property="summaryField" destination="Aqr-tQ-QOg" id="pSn-Ge-Nfc"/>
+                        <outlet property="titleField" destination="qt9-tW-vIB" id="0gT-xL-3DC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vtq-kn-SCi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,6 +375,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Y0Z-AP-XkM"/>
+        <segue reference="hvV-un-LVa"/>
     </inferredMetricsTieBreakers>
 </document>

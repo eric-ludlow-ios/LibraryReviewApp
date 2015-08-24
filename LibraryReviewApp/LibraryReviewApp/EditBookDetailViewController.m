@@ -7,9 +7,16 @@
 //
 
 #import "EditBookDetailViewController.h"
+#import "BookController.h"
 
 @interface EditBookDetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UITextField *authorField;
+@property (weak, nonatomic) IBOutlet UITextField *summaryField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ratingSegCon;
+@property (weak, nonatomic) IBOutlet UISwitch *hasReadSwitch;
+@property (weak, nonatomic) IBOutlet UITextView *reviewTextView;
 @property (nonatomic)UITextView *activeView;
 
 @end
@@ -29,6 +36,19 @@
 }
 
 - (IBAction)doneButtonPressed:(id)sender {
+    
+    if (!self.book) {
+        self.book = [[BookController sharedInstance] createBook];
+    }
+    
+    self.book.bookTitle = self.titleField.text;
+    self.book.bookAuthor = self.authorField.text;
+    self.book.bookSummary = self.summaryField.text;
+    self.book.myRating = self.ratingSegCon.value;
+    self.book.myReview = self.reviewTextView.text;
+    self.book.hasRead = self.hasReadSwitch.value;
+    
+    [[BookController sharedInstance] save];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -58,15 +78,15 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.myReviewTextView.contentInset = contentInsets;
-    self.myReviewTextView.scrollIndicatorInsets = contentInsets;
+    self.reviewTextView.contentInset = contentInsets;
+    self.reviewTextView.scrollIndicatorInsets = contentInsets;
     
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your app might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
     if (!CGRectContainsPoint(aRect, self.activeView.frame.origin) ) {
-        [self.myReviewTextView scrollRectToVisible:self.activeView.frame animated:YES];
+        [self.reviewTextView scrollRectToVisible:self.activeView.frame animated:YES];
     }
 }
 
@@ -74,8 +94,8 @@
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.myReviewTextView.contentInset = contentInsets;
-    self.myReviewTextView.scrollIndicatorInsets = contentInsets;
+    self.reviewTextView.contentInset = contentInsets;
+    self.reviewTextView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)textFieldDidBeginEditing:(UITextView *)textView

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Book.h"
 
 @interface EditBookDetailViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextView *myReviewTextView;
+@property (strong, nonatomic)Book *book;
 
 @end
