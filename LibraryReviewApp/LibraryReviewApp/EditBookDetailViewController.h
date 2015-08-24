@@ -10,4 +10,6 @@
 
 @interface EditBookDetailViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextView *myReviewTextView;
+
 @end
