@@ -62,7 +62,7 @@
                                             <outlet property="authorLabel" destination="q8v-KJ-XgA" id="FQq-Eo-zBe"/>
                                             <outlet property="hasReadSwitch" destination="Ljj-Tz-8VS" id="g3f-F9-Iy2"/>
                                             <outlet property="titleLabel" destination="X74-Fy-sin" id="fNq-EI-oSM"/>
-                                            <segue destination="yEO-NK-q8u" kind="show" id="9UZ-xJ-0ZR"/>
+                                            <segue destination="yEO-NK-q8u" kind="show" identifier="bookCellSelected" id="9UZ-xJ-0ZR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -211,7 +211,6 @@
                     <connections>
                         <outlet property="authorField" destination="oFA-Vq-ZXD" id="kQZ-xr-c3L"/>
                         <outlet property="hasReadSwitch" destination="WIm-cF-b3o" id="bzr-hE-ZdD"/>
-                        <outlet property="myReviewTextView" destination="RcK-My-gzP" id="G6b-W2-Qll"/>
                         <outlet property="ratingSegCon" destination="d3Q-BD-Vda" id="jPZ-ho-Zpf"/>
                         <outlet property="reviewTextView" destination="RcK-My-gzP" id="tEW-lx-mEl"/>
                         <outlet property="summaryField" destination="Aqr-tQ-QOg" id="pSn-Ge-Nfc"/>
@@ -220,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vtq-kn-SCi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3168" y="418"/>
+            <point key="canvasLocation" x="2572" y="806"/>
         </scene>
         <!--Title-->
         <scene sceneID="b9B-cE-mCr">
@@ -332,10 +331,18 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="authorLabel" destination="cY2-55-iM8" id="hsq-lN-UUe"/>
+                        <outlet property="hasReadSwitch" destination="bqm-jG-My6" id="nqi-2s-Mjl"/>
+                        <outlet property="ratingLabel" destination="LL4-VH-Cfd" id="Q79-x5-ApO"/>
+                        <outlet property="reviewTextView" destination="sCc-jE-mFP" id="qrf-q2-uuY"/>
+                        <outlet property="summaryLabel" destination="cmp-jj-SA3" id="xWH-qm-HVM"/>
+                        <outlet property="titleLabel" destination="BWl-Pz-SRu" id="nbD-RH-cj8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzL-q4-Xwf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="880"/>
+            <point key="canvasLocation" x="1117" y="1182"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7qM-E5-619">
@@ -371,7 +378,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UkC-kd-SfQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2478" y="418"/>
+            <point key="canvasLocation" x="1870" y="806"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

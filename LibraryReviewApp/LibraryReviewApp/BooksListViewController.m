@@ -7,6 +7,9 @@
 //
 
 #import "BooksListViewController.h"
+#import "Book.h"
+#import "BookController.h"
+#import "BookDetailViewController.h"
 
 @interface BooksListViewController ()
 
@@ -25,6 +28,22 @@
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"bookCellSelected"]) {
+        
+        UITableViewCell *cellSelected = sender;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cellSelected];
+        
+        Book *book = [BookController sharedInstance].books[indexPath.row];
+        
+        BookDetailViewController *destinationBookDetailVC = segue.destinationViewController;
+        
+        destinationBookDetailVC.book = book;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

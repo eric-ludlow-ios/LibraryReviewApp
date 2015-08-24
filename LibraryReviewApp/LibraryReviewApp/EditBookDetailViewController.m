@@ -44,9 +44,13 @@
     self.book.bookTitle = self.titleField.text;
     self.book.bookAuthor = self.authorField.text;
     self.book.bookSummary = self.summaryField.text;
-    self.book.myRating = self.ratingSegCon.value;
+    self.book.myRating = [NSNumber numberWithInteger:self.ratingSegCon.selectedSegmentIndex];
     self.book.myReview = self.reviewTextView.text;
-    self.book.hasRead = self.hasReadSwitch.value;
+    if (self.hasReadSwitch.on) {
+        self.book.hasRead = @1;
+    } else {
+        self.book.hasRead = @0;
+    }
     
     [[BookController sharedInstance] save];
     
