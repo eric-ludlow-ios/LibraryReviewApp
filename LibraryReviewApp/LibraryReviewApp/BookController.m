@@ -53,4 +53,10 @@
     [bookToDelete.managedObjectContext deleteObject:bookToDelete];
 }
 
+- (void)save {
+    
+    [[Stack sharedInstance].managedObjectContext save:nil];
+}
+
+
 @end

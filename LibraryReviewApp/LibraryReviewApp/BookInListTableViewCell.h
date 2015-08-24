@@ -10,4 +10,8 @@
 
 @interface BookInListTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *hasReadSwitch;
+
 @end

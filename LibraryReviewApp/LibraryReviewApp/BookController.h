@@ -21,4 +21,6 @@
 
 - (void)deleteBook:(Book *)bookToDelete;
 
+- (void)save;
+
 @end

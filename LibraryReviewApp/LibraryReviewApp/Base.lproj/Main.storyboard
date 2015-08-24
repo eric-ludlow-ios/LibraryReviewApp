@@ -26,8 +26,42 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qyj-bf-EzV" id="7zJ-2y-Ns3">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X74-Fy-sin">
+                                                    <rect key="frame" x="8" y="0.0" width="527" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="LTL-XN-x3U"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8v-KJ-XgA">
+                                                    <rect key="frame" x="8" y="22" width="527" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ljj-Tz-8VS">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="X74-Fy-sin" firstAttribute="top" secondItem="7zJ-2y-Ns3" secondAttribute="top" id="1Mj-Al-UGR"/>
+                                                <constraint firstItem="q8v-KJ-XgA" firstAttribute="top" secondItem="X74-Fy-sin" secondAttribute="bottom" constant="1" id="67m-wD-6GD"/>
+                                                <constraint firstItem="q8v-KJ-XgA" firstAttribute="leading" secondItem="X74-Fy-sin" secondAttribute="leading" id="6OR-AV-ZlQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ljj-Tz-8VS" secondAttribute="trailing" id="8fC-rH-J0D"/>
+                                                <constraint firstItem="X74-Fy-sin" firstAttribute="leading" secondItem="7zJ-2y-Ns3" secondAttribute="leadingMargin" id="B8T-WO-0oy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="q8v-KJ-XgA" secondAttribute="bottom" constant="-7.5" id="Gky-hz-ecM"/>
+                                                <constraint firstItem="Ljj-Tz-8VS" firstAttribute="leading" secondItem="X74-Fy-sin" secondAttribute="trailing" constant="8" symbolic="YES" id="Jig-lU-jy1"/>
+                                                <constraint firstItem="Ljj-Tz-8VS" firstAttribute="leading" secondItem="q8v-KJ-XgA" secondAttribute="trailing" constant="8" symbolic="YES" id="oPI-nv-icB"/>
+                                                <constraint firstItem="Ljj-Tz-8VS" firstAttribute="centerY" secondItem="7zJ-2y-Ns3" secondAttribute="centerY" id="uQJ-IM-0OE"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="authorLabel" destination="q8v-KJ-XgA" id="FQq-Eo-zBe"/>
+                                            <outlet property="hasReadSwitch" destination="Ljj-Tz-8VS" id="g3f-F9-Iy2"/>
+                                            <outlet property="titleLabel" destination="X74-Fy-sin" id="fNq-EI-oSM"/>
                                             <segue destination="yEO-NK-q8u" kind="show" id="9UZ-xJ-0ZR"/>
                                         </connections>
                                     </tableViewCell>
@@ -326,6 +360,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Y0Z-AP-XkM"/>
+        <segue reference="hvV-un-LVa"/>
     </inferredMetricsTieBreakers>
 </document>
