@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Eric Ludlow. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "BooksListViewController.h"
 
-@interface ViewController ()
+@interface BooksListViewController ()
 
 @end
 
-@implementation ViewController
+@implementation BooksListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

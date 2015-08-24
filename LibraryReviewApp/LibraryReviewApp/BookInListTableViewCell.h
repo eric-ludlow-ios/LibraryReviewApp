@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BookInListTableViewCell.h
 //  LibraryReviewApp
 //
 //  Created by Rutan on 8/24/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BookInListTableViewCell : UITableViewCell
 
 @end
-
