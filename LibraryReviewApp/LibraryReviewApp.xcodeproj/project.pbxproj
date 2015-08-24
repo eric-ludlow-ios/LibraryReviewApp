@@ -22,6 +22,7 @@
 		0F9F426F1B8B941000908FEB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F426D1B8B941000908FEB /* Model.xcdatamodeld */; };
 		0F9F42731B8B944700908FEB /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F42721B8B944700908FEB /* Stack.m */; };
 		0F9F42761B8B95E000908FEB /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F42751B8B95E000908FEB /* Book.m */; };
+		0F9F42791B8B967800908FEB /* BookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F42781B8B967700908FEB /* BookController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		0F9F42721B8B944700908FEB /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		0F9F42741B8B95E000908FEB /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		0F9F42751B8B95E000908FEB /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		0F9F42771B8B967700908FEB /* BookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookController.h; sourceTree = "<group>"; };
+		0F9F42781B8B967700908FEB /* BookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				0F9F42721B8B944700908FEB /* Stack.m */,
 				0F9F42741B8B95E000908FEB /* Book.h */,
 				0F9F42751B8B95E000908FEB /* Book.m */,
+				0F9F42771B8B967700908FEB /* BookController.h */,
+				0F9F42781B8B967700908FEB /* BookController.m */,
 			);
 			name = "Models and Controls";
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				0F9F42611B8B8B5D00908FEB /* BookInListTableViewCell.m in Sources */,
 				0F9F42641B8B8D9A00908FEB /* BooksListTableViewDataSource.m in Sources */,
 				0F9F423F1B8B871900908FEB /* BooksListViewController.m in Sources */,
+				0F9F42791B8B967800908FEB /* BookController.m in Sources */,
 				0F9F426F1B8B941000908FEB /* Model.xcdatamodeld in Sources */,
 				0F9F423C1B8B871900908FEB /* AppDelegate.m in Sources */,
 				0F9F42671B8B914500908FEB /* EditBookDetailViewController.m in Sources */,
