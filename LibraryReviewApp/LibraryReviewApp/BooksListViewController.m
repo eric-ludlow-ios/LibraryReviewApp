@@ -7,7 +7,6 @@
 //
 
 #import "BooksListViewController.h"
-#import "Book.h"
 #import "BookController.h"
 #import "BookDetailViewController.h"
 

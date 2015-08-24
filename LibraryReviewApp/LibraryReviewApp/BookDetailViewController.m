@@ -7,6 +7,7 @@
 //
 
 #import "BookDetailViewController.h"
+#import "EditBookDetailViewController.h"
 
 @interface BookDetailViewController ()
 
@@ -32,7 +33,6 @@
     self.titleLabel.text = self.book.bookTitle;
     self.authorLabel.text = self.book.bookAuthor;
     self.summaryLabel.text = self.book.bookSummary;
-    self.ratingLabel.text = [NSString stringWithFormat:@"Rating: %@", self.book.myRating];
     self.reviewTextView.text = self.book.myReview;
     if ([self.book.hasRead isEqualToNumber:@0]) {
         self.hasReadSwitch.on = NO;
@@ -40,6 +40,41 @@
         self.hasReadSwitch.on = YES;
     }
     self.hasReadSwitch.enabled = NO;
+    
+    switch (self.book.myRating.integerValue) {
+        case 0:
+            self.ratingLabel.text = @"Rating: none";
+            break;
+        case 1:
+            self.ratingLabel.text = @"Rating: ☆";
+            break;
+        case 2:
+            self.ratingLabel.text = @"Rating: ☆☆";
+            break;
+        case 3:
+            self.ratingLabel.text = @"Rating: ☆☆☆";
+            break;
+        case 4:
+            self.ratingLabel.text = @"Rating: ☆☆☆☆";
+            break;
+        case 5:
+            self.ratingLabel.text = @"Rating: ☆☆☆☆☆";
+            break;
+
+        default:
+            break;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"editBook"]) {
+        
+        UINavigationController *navCon = segue.destinationViewController;
+        EditBookDetailViewController *destinationEditBookDetailVC = (EditBookDetailViewController *)(navCon.topViewController);
+        
+        destinationEditBookDetailVC.book = self.book;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

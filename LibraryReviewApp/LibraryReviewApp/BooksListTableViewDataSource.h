@@ -11,4 +11,6 @@
 
 @interface BooksListTableViewDataSource : NSObject <UITableViewDataSource>
 
+@property (strong, nonatomic)UITableView *tableView;
+
 @end
