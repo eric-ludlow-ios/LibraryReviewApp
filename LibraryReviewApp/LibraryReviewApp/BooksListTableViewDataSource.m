@@ -11,6 +11,9 @@
 #import "BookController.h"
 
 //cell delegate
+@interface BooksListTableViewDataSource () <BookInListTableViewCellSwitchDelegate>
+
+@end
 
 @implementation BooksListTableViewDataSource
 
@@ -26,6 +29,7 @@
     BookInListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookInListCell"];
     
     //set cell's delegate to self
+    cell.delegate = self;
     
     Book *book = [BookController sharedInstance].books[indexPath.row];
     
@@ -41,5 +45,17 @@
 }
 
 //delegate method
+- (void)cellSwitchFlipped:(BookInListTableViewCell *)cellWithFlippedSwitch {
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cellWithFlippedSwitch];
+    Book *book = [BookController sharedInstance].books[indexPath.row];
+    
+    if (!cellWithFlippedSwitch.hasReadSwitch.on) {
+        book.hasRead = @0;
+    } else {
+        book.hasRead = @1;
+    }
+    [[BookController sharedInstance] save];
+}
 
 @end
