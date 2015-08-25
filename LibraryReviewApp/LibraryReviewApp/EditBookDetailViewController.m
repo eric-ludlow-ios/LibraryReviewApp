@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ratingSegCon;
 @property (weak, nonatomic) IBOutlet UISwitch *hasReadSwitch;
 @property (weak, nonatomic) IBOutlet UITextView *reviewTextView;
-@property (nonatomic)UITextView *activeView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -27,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self registerForKeyboardNotifications];
+    [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,55 +84,66 @@
     // Dispose of any resources that can be recreated.
 }
 
-//// Call this method somewhere in your view controller setup code.
-//- (void)registerForKeyboardNotifications
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    
+    NSDictionary *info = [aNotification userInfo];
+    CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    CGFloat deleteButtonHeight = self.deleteButton.frame.size.height;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardHeight - deleteButtonHeight - 20.0, 0.0);
+    
+    self.reviewTextView.contentInset = contentInsets;
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.reviewTextView.contentInset = contentInsets;
+}
+
+//- (void)textViewDidBeginEditing:(UITextView *)textView
 //{
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWasShown:)
-//                                                 name:UIKeyboardDidShowNotification object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(keyboardWillBeHidden:)
-//                                                 name:UIKeyboardWillHideNotification object:nil];
-//    
-//}
-//
-//// Called when the UIKeyboardDidShowNotification is sent.
-//- (void)keyboardWasShown:(NSNotification*)aNotification {
-//    
-//    NSDictionary *info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    
-//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-//    self.reviewTextView.contentInset = contentInsets;
-//    self.reviewTextView.scrollIndicatorInsets = contentInsets;
-//    
-//    // If active text field is hidden by keyboard, scroll it so it's visible
-//    // Your app might not need or want this behavior.
-//    CGRect aRect = self.view.frame;
-//    aRect.size.height -= kbSize.height;
-//    if (!CGRectContainsPoint(aRect, self.activeView.frame.origin) ) {
-//        [self.reviewTextView scrollRectToVisible:self.activeView.frame animated:YES];
+//    if ([textView.text isEqualToString:@"placeholder text here..."]) {
+//        textView.text = @"";
+//        textView.textColor = [UIColor blackColor]; //optional
 //    }
+//    [textView becomeFirstResponder];
 //}
 //
-//// Called when the UIKeyboardWillHideNotification is sent
-//- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
-//    
-//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-//    self.reviewTextView.contentInset = contentInsets;
-//    self.reviewTextView.scrollIndicatorInsets = contentInsets;
+//- (void)textViewDidEndEditing:(UITextView *)textView
+//{
+//    if ([textView.text isEqualToString:@""]) {
+//        textView.text = @"placeholder text here...";
+//        textView.textColor = [UIColor lightGrayColor]; //optional
+//    }
+//    [textView resignFirstResponder];
 //}
+//just remember to set myUITextView with the exact text on creation e.g.
 //
-//- (void)textFieldDidBeginEditing:(UITextView *)textView {
-//    
-//    self.activeView = textView;
-//}
+//UITextView *myUITextView = [[UITextView alloc] init];
+//myUITextView.delegate = self;
+//myUITextView.text = @"placeholder text here...";
+//myUITextView.textColor = [UIColor lightGrayColor]; //optional
+//and make the parent class a UITextViewDelegate before including these methods e.g.
 //
-//- (void)textFieldDidEndEditing:(UITextView *)textView {
-//    
-//    self.activeView = nil;
-//}
+//@interface MyClass () <UITextViewDelegate>
+//@end
+
 
 /*
 #pragma mark - Navigation

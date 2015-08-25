@@ -110,17 +110,17 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-tW-vIB">
                                 <rect key="frame" x="16" y="72" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Author" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oFA-Vq-ZXD">
                                 <rect key="frame" x="16" y="110" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Summary" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aqr-tQ-QOg">
                                 <rect key="frame" x="16" y="148" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have Read" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alZ-AO-cvd">
                                 <rect key="frame" x="16" y="224" width="252" height="21"/>
@@ -140,13 +140,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIm-cF-b3o">
                                 <rect key="frame" x="276" y="219" width="51" height="31"/>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-My-gzP">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="placeholder text" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-My-gzP">
                                 <rect key="frame" x="16" y="282" width="568" height="260"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="260" id="Dco-Iq-uMW"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet,  consectetaur cillium adipisicing pecu,  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam,  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident,  sunt in culpa qui officia deserunt mollit anim id est laborum.  Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -176,6 +172,7 @@
                         <constraints>
                             <constraint firstItem="Aqr-tQ-QOg" firstAttribute="top" secondItem="oFA-Vq-ZXD" secondAttribute="bottom" constant="8" symbolic="YES" id="0ZB-1S-ISU"/>
                             <constraint firstItem="alZ-AO-cvd" firstAttribute="centerY" secondItem="WIm-cF-b3o" secondAttribute="centerY" id="19x-Ff-uA6"/>
+                            <constraint firstItem="K9x-bU-ilL" firstAttribute="top" secondItem="RcK-My-gzP" secondAttribute="bottom" constant="8" id="8hF-sA-bVw"/>
                             <constraint firstItem="d3Q-BD-Vda" firstAttribute="top" secondItem="Aqr-tQ-QOg" secondAttribute="bottom" constant="8" symbolic="YES" id="8qd-su-vwO"/>
                             <constraint firstItem="qt9-tW-vIB" firstAttribute="trailing" secondItem="oFA-Vq-ZXD" secondAttribute="trailing" id="AH5-Lo-iAt"/>
                             <constraint firstItem="c35-eI-COM" firstAttribute="top" secondItem="alZ-AO-cvd" secondAttribute="bottom" constant="8" symbolic="YES" id="AJG-9y-nKT"/>
@@ -216,6 +213,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="authorField" destination="oFA-Vq-ZXD" id="kQZ-xr-c3L"/>
+                        <outlet property="deleteButton" destination="K9x-bU-ilL" id="HmR-JZ-jsV"/>
                         <outlet property="hasReadSwitch" destination="WIm-cF-b3o" id="bzr-hE-ZdD"/>
                         <outlet property="ratingSegCon" destination="d3Q-BD-Vda" id="jPZ-ho-Zpf"/>
                         <outlet property="reviewTextView" destination="RcK-My-gzP" id="tEW-lx-mEl"/>
