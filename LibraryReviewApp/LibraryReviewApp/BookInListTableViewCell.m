@@ -14,6 +14,13 @@
     // Initialization code
 }
 
+//wire up the toggle switch; implement the flip method to call the delegate method
+
+- (IBAction)switchFlipped:(id)sender {
+    
+    [self.delegate cellSwitchFlipped:self];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

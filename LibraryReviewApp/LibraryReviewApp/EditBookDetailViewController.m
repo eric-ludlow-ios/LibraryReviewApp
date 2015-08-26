@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ratingSegCon;
 @property (weak, nonatomic) IBOutlet UISwitch *hasReadSwitch;
 @property (weak, nonatomic) IBOutlet UITextView *reviewTextView;
-@property (nonatomic)UITextView *activeView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @end
 
@@ -29,6 +29,28 @@
     
     [self registerForKeyboardNotifications];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (!self.book) {
+        self.hasReadSwitch.on = NO;
+    }
+    
+    if (self.book) {
+        self.titleField.text = self.book.bookTitle;
+        self.authorField.text = self.book.bookAuthor;
+        self.summaryField.text = self.book.bookSummary;
+        self.ratingSegCon.selectedSegmentIndex = [self.book.myRating integerValue];
+        self.reviewTextView.text = self.book.myReview;
+        if ([self.book.hasRead isEqualToNumber:@0]) {
+            self.hasReadSwitch.on = NO;
+        } else {
+            self.hasReadSwitch.on = YES;
+        }
+    }
+}
+
 
 - (IBAction)cancelButtonPressed:(id)sender {
     
@@ -44,9 +66,13 @@
     self.book.bookTitle = self.titleField.text;
     self.book.bookAuthor = self.authorField.text;
     self.book.bookSummary = self.summaryField.text;
-    self.book.myRating = self.ratingSegCon.value;
+    self.book.myRating = [NSNumber numberWithInteger:self.ratingSegCon.selectedSegmentIndex];
     self.book.myReview = self.reviewTextView.text;
-    self.book.hasRead = self.hasReadSwitch.value;
+    if (self.hasReadSwitch.on) {
+        self.book.hasRead = @1;
+    } else {
+        self.book.hasRead = @0;
+    }
     
     [[BookController sharedInstance] save];
     
@@ -72,41 +98,52 @@
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    
     NSDictionary *info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGFloat keyboardHeight = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    CGFloat deleteButtonHeight = self.deleteButton.frame.size.height;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardHeight - deleteButtonHeight - 20.0, 0.0);
+    
     self.reviewTextView.contentInset = contentInsets;
-    self.reviewTextView.scrollIndicatorInsets = contentInsets;
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, self.activeView.frame.origin) ) {
-        [self.reviewTextView scrollRectToVisible:self.activeView.frame animated:YES];
-    }
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.reviewTextView.contentInset = contentInsets;
-    self.reviewTextView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)textFieldDidBeginEditing:(UITextView *)textView
-{
-    self.activeView = textView;
-}
+//- (void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    if ([textView.text isEqualToString:@"placeholder text here..."]) {
+//        textView.text = @"";
+//        textView.textColor = [UIColor blackColor]; //optional
+//    }
+//    [textView becomeFirstResponder];
+//}
+//
+//- (void)textViewDidEndEditing:(UITextView *)textView
+//{
+//    if ([textView.text isEqualToString:@""]) {
+//        textView.text = @"placeholder text here...";
+//        textView.textColor = [UIColor lightGrayColor]; //optional
+//    }
+//    [textView resignFirstResponder];
+//}
+//just remember to set myUITextView with the exact text on creation e.g.
+//
+//UITextView *myUITextView = [[UITextView alloc] init];
+//myUITextView.delegate = self;
+//myUITextView.text = @"placeholder text here...";
+//myUITextView.textColor = [UIColor lightGrayColor]; //optional
+//and make the parent class a UITextViewDelegate before including these methods e.g.
+//
+//@interface MyClass () <UITextViewDelegate>
+//@end
 
-- (void)textFieldDidEndEditing:(UITextView *)textView
-{
-    self.activeView = nil;
-}
 
 /*
 #pragma mark - Navigation

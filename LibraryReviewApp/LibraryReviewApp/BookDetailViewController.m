@@ -7,8 +7,16 @@
 //
 
 #import "BookDetailViewController.h"
+#import "EditBookDetailViewController.h"
 
 @interface BookDetailViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *hasReadSwitch;
+@property (weak, nonatomic) IBOutlet UITextView *reviewTextView;
 
 @end
 
@@ -17,6 +25,56 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.titleLabel.text = self.book.bookTitle;
+    self.authorLabel.text = self.book.bookAuthor;
+    self.summaryLabel.text = self.book.bookSummary;
+    self.reviewTextView.text = self.book.myReview;
+    if ([self.book.hasRead isEqualToNumber:@0]) {
+        self.hasReadSwitch.on = NO;
+    } else {
+        self.hasReadSwitch.on = YES;
+    }
+    self.hasReadSwitch.enabled = NO;
+    
+    switch (self.book.myRating.integerValue) {
+        case 0:
+            self.ratingLabel.text = @"Rating: none";
+            break;
+        case 1:
+            self.ratingLabel.text = @"Rating: ☆";
+            break;
+        case 2:
+            self.ratingLabel.text = @"Rating: ☆☆";
+            break;
+        case 3:
+            self.ratingLabel.text = @"Rating: ☆☆☆";
+            break;
+        case 4:
+            self.ratingLabel.text = @"Rating: ☆☆☆☆";
+            break;
+        case 5:
+            self.ratingLabel.text = @"Rating: ☆☆☆☆☆";
+            break;
+
+        default:
+            break;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"editBook"]) {
+        
+        UINavigationController *navCon = segue.destinationViewController;
+        EditBookDetailViewController *destinationEditBookDetailVC = (EditBookDetailViewController *)(navCon.topViewController);
+        
+        destinationEditBookDetailVC.book = self.book;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

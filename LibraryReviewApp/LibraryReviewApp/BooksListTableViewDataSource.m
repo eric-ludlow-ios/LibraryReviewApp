@@ -9,11 +9,17 @@
 #import "BooksListTableViewDataSource.h"
 #import "BookInListTableViewCell.h"
 #import "BookController.h"
-#import "Book.h"
+
+//cell delegate
+@interface BooksListTableViewDataSource () <BookInListTableViewCellSwitchDelegate>
+
+@end
 
 @implementation BooksListTableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    self.tableView = tableView;
     
     return [BookController sharedInstance].books.count;
 }
@@ -22,17 +28,34 @@
     
     BookInListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookInListCell"];
     
+    //set cell's delegate to self
+    cell.delegate = self;
+    
     Book *book = [BookController sharedInstance].books[indexPath.row];
     
     cell.titleLabel.text = book.bookTitle;
     cell.authorLabel.text = book.bookAuthor;
-    if ([book.hasRead isEqualToNumber:@1]) {
-        cell.hasReadSwitch.on = YES;
-    } else {
+    if ([book.hasRead isEqualToNumber:@0]) {
         cell.hasReadSwitch.on = NO;
+    } else {
+        cell.hasReadSwitch.on = YES;
     }
         
     return cell;
+}
+
+//delegate method
+- (void)cellSwitchFlipped:(BookInListTableViewCell *)cellWithFlippedSwitch {
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cellWithFlippedSwitch];
+    Book *book = [BookController sharedInstance].books[indexPath.row];
+    
+    if (!cellWithFlippedSwitch.hasReadSwitch.on) {
+        book.hasRead = @0;
+    } else {
+        book.hasRead = @1;
+    }
+    [[BookController sharedInstance] save];
 }
 
 @end
